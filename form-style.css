@@ -1,0 +1,385 @@
+:root {
+    --primary: #FF8B13;
+    --secondary: #FFCB99;
+    --black: #222;
+    --white: #FFF;
+    --gray: #666;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+* {
+    color: var(--black);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}
+
+hr {
+    border-top: var(--bs-border-width) solid #939393;
+    margin: 1.5rem 0;
+}
+
+h5,
+label {
+    margin-bottom: 12px;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.navbar {
+    --bs-navbar-color: var(--white);
+    --bs-navbar-padding-x: 1rem;
+    --bs-navbar-padding-y: 1rem;
+    box-shadow: 0px 4px 8px 0px rgba(34, 34, 34, 0.08);
+}
+
+.navbar-brand img {
+    width: 109px;
+    height: 24px;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.btn {
+    --bs-btn-padding-x: 0;
+    --bs-btn-padding-y: 0;
+    --bs-btn-border-radius: 0px;
+}
+
+.arrow img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.arrow span {
+    font-weight: 500;
+}
+
+main {
+    margin: 2rem 1rem;
+}
+
+#regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+}
+
+input,
+#fileInput {
+    border-radius: 8px;
+    border: 1px solid #e6e6e6;
+    background: #FFF;
+    padding: 12px;
+    width: 100%;
+}
+
+#fileInput:hover {
+    cursor: pointer;
+}
+
+
+.form-control,
+.form-select {
+    padding: 12px;
+}
+
+.required {
+    color: #F00073;
+}
+
+#description,
+#experience,
+#skill {
+    border-radius: 8px;
+    border: 1px solid var(--Neutral-Color-50, #E6E6E6);
+    position: relative;
+    resize: none;
+    width: 100%;
+    height: 88px;
+    padding: 12px;
+}
+
+#description::placeholder {
+    white-space: normal;
+}
+
+#countInfo, #countExperience, #countSkill{
+    color: #666;
+    text-align: right;
+}
+
+
+.form-control.invalid,
+.form-select.invalid {
+    background: #ffdddd;
+}
+
+
+.tab {
+    display: none;
+}
+
+.tab h1 {
+    color: #000;
+    font-family: "Plus Jakarta Sans";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+.step-wrapper {
+    margin-bottom: 2.5rem;
+    display: none;
+}
+
+.status {
+    margin-bottom: 12px;
+}
+
+.step-container {
+    display: flex;
+    gap: 12px;
+}
+
+.step {
+    height: 12px;
+    width: 118px;
+    margin: 0 2px;
+    background-color: #e6e6e6;
+    border-radius: 8px;
+    display: block;
+}
+
+.step.active {
+    border-radius: 8px;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.step.finish {
+    background-color: #FF8B13;
+}
+
+.step-item p {
+    font-size: 14px;
+    text-align: center;
+}
+
+.caption {
+    margin-top: 0.5rem;
+}
+
+#score {
+    border-radius: 8px;
+    background: var(--primary);
+    color: var(--white);
+    padding: 2px 8px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4px;
+    gap: 10px;
+}
+
+.preview {
+    display: none;
+    border-radius: 16px;
+    background: #FFF4E9;
+    padding: 21px 32px;
+    flex-grow: 0;
+    max-width: 80%;
+}
+
+.preview img {
+    width: 100%;
+}
+
+.row {
+    margin-bottom: 12px;
+}
+
+.experience-form-group button,
+.education-form-group button,
+.certificate-form-group button,
+.skills-form-group button,
+.other-form-group button {
+    padding: 14px 40px;
+}
+
+.experience-form-group input,
+.education-form-group input,
+.certificate-form-group input,
+.skills-form-group input,
+.other-form-group input {
+    margin-bottom: 12px;
+}
+
+.inputHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inputHeading p {
+    margin: 0;
+}
+
+.inputHeading .subheading {
+    font-weight: 600;
+}
+
+.inputHeading .date {
+    font-size: 12px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-box {
+    display: flex;
+    gap: 16px;
+}
+
+#btnFormContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nextBtn,
+#prevBtn,
+#saveExp,
+#backExp {
+    width: 100%;
+    padding: 14px 0;
+}
+
+#nextBtn,
+#saveExp,
+#submit {
+    border-radius: 8px;
+    border: 0.75px solid #FFF4E9;
+    background: #FF8B13;
+    box-shadow: 0px 0px 8px 0px rgba(255, 139, 19, 0.32);
+    color: var(--white);
+
+}
+
+#prevBtn,
+#backExp,
+#back {
+    border-radius: 8px;
+    border: 0.75px solid var(--Neutral-Color-50, #E6E6E6);
+    background: #FFF;
+    box-shadow: 0px 0px 24px 0px rgba(255, 216, 178, 0.08);
+}
+
+
+.add {
+    color: var(--primary);
+    border-radius: 8px;
+    border: 0.75px solid #E6E6E6;
+    background: #FFF;
+    box-shadow: 0px 0px 24px 0px rgba(255, 216, 178, 0.08);
+    display: flex;
+    gap: 10px;
+    padding: 14px 40px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+
+.add h5 {
+    font-weight: 400;
+    margin: 0;
+}
+
+.info {
+    border-radius: 8px;
+    background: #E5F7FF;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+    padding: 6px 16px;
+    word-wrap: break-word;
+    color: #0A83B5;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: -0.24px;
+}
+
+@media screen and (min-width: 720px) {
+
+    main {
+        margin: 2rem;
+    }
+
+    #nextBtn,
+    #prevBtn {
+        width: 100%;
+        padding: 14px 40px;
+    }
+
+    .step-wrapper {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+
+    #nextBtn,
+    #prevBtn {
+        width: 100%;
+        padding: 14px 40px;
+    }
+
+    .navbar {
+        --bs-navbar-padding-x: 4.38rem;
+        --bs-navbar-padding-y: 1.25rem;
+    }
+
+    main {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2.5rem 4.38rem;
+    }
+
+    .preview {
+        display: block;
+    }
+}
