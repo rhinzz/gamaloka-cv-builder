@@ -1,4 +1,4 @@
-# gamaloka-magang-cv-frontend
+# gamaloka-cv-builder
 CV builder design for Gamaloka
 
 ## Table of contents
