@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./form-style.css">
+    <title>Form</title>
+</head>
+
+<body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="btn" href="#">
+                <div class="arrow">
+                    <img src="./assets/arrow.svg" alt="arrow">
+                </div>
+            </a>
+            <a class="navbar-brand">
+                <img src="./assets/logo.png" alt="gamaloka-logo">
+            </a>
+        </div>
+    </nav>
+    <main>
+        <form action="" id="dynamicForm">
+            <div class="step-wrapper">
+                <p class="status"><span id="score"></span> Skor CV Anda</p>
+                <div class="step-container">
+                    <div class="step-item">
+                        <span class="step"></span>
+                        <p class="caption">Informasi Pribadi</p>
+                    </div>
+                    <div class="step-item">
+                        <span class="step"></span>
+                        <p class="caption">Pengalaman</p>
+                    </div>
+                    <div class="step-item">
+                        <span class="step"></span>
+                        <p class="caption">Pendidikan</p>
+                    </div>
+                    <div class="step-item">
+                        <span class="step"></span>
+                        <p class="caption">Keahlian</p>
+                    </div>
+                    <div class="step-item">
+                        <span class="step"></span>
+                        <p class="caption">Lainnya</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab user">
+                <h1>Informasi Pribadi</h1>
+                <p>Bantu rekruiter mengenalmu!</p>
+                <hr>
+
+                <label>Ringkasan Informasi<span class="required">*</span></label>
+                <textarea class="form-control" id="description" oninput="this.classList.remove('invalid')"
+                    placeholder="Jelaskan informasi singkat tentang Anda, pengalaman Anda, dan keahlian Anda"></textarea>
+                <p id="countInfo"></p>
+                <label>Nama Lengkap<span class="required">*</span></label>
+                <input class="form-control" oninput="this.classList.remove('invalid')" placeholder="Masukkan nama lengkap" style="margin-bottom: 1rem;">
+
+                <div class="row">
+                    <div class="col">
+                        <label>No. Whatsapp<span class="required">*</span></label>
+                        <input type="tel" class="form-control" placeholder="Masukkan nomor Whatsapp Anda"
+                            oninput="this.classList.remove('invalid')" >
+                    </div>
+                    <div class="col">
+                        <label>Email<span class="required">*</span></label>
+                        <input type="email" class="form-control" placeholder="Masukkan email Anda"
+                            oninput="this.classList.remove('invalid')">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label>Provinsi<span class="required">*</span></label>
+                        <select class="form-select" aria-label="Default select example" oninput="this.classList.remove('invalid')">
+                            <option value="" selected>Pilih Provinsi</option>
+                            <option value="1">DKI Jakarta</option>
+                            <option value="2">Jawa Barat</option>
+                            <option value="3">Banten</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label>Kota<span class="required">*</span></label>
+                        <select class="form-select" aria-label="Default select example" oninput="this.classList.remove('invalid')">
+                            <option value="" selected>Pilih Kota</option>
+                            <option value="1">Jakarta</option>
+                            <option value="2">Bogor</option>
+                            <option value="4">Depok</option>
+                            <option value="5">Tangerang</option>
+                            <option value="6">Bekasi</option>
+                            <option value="7">Bandung</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab experience">
+                <h1>Pengalaman</h1>
+                <p>Bantu rekruiter mengenalmu!</p>
+                <hr>
+                <div id="experience-wrapper">
+                    <h5>Pengalaman Kerja</h5>
+                    <div id="experience-box"></div>
+                    <button class="add" id="addExperience">
+                        Tambah Pengalaman Kerja
+                        <img src="./assets/add.svg" alt="add">
+                    </button>
+                </div>
+                <div id="experience-form"></div>
+            </div>
+
+            <div class="tab education">
+                <h1>Pendidikan</h1>
+                <p>Bantu rekruiter mengenalmu!</p>
+                <hr>
+                <div id="education-wrapper">
+                    <h5>Pendidikan Terakhir</h5>
+                    <div id="education-box"></div>
+                    <div class="info" id="info">
+                        <img src="./assets/info.svg" alt="info">
+                        Isi dengan jenjang pendidikan yang terakhir telah diselesaikan. Anda hanya dapat mengisi satu
+                        riwayat pendidikan.
+                    </div>
+                    <button class="add" id="addEducation">
+                        Tambah Pendidikan
+                        <img src="./assets/add.svg" alt="add">
+                    </button>
+                    <h5>Sertifikasi</h5>
+                    <div id="certification-box"></div>
+                    <button class="add" id="addCertificate">
+                        Tambah Sertifikasi
+                        <img src="./assets/add.svg" alt="add">
+                    </button>
+                </div>
+                <div id="education-form"></div>
+            </div>
+
+            <div class="tab skills">
+                <h1>Keahlian</h1>
+                <p>Bantu rekruiter mengenalmu!</p>
+                <hr>
+                <div id="skills-wrapper">
+                    <h5>Keahlian</h5>
+                    <div id="skill-box"></div>
+                    <button class="add" id="addSkills">
+                        Tambah Keahlian
+                        <img src="./assets/add.svg" alt="add">
+                    </button>
+                </div>
+                <div id="skills-form"></div>
+            </div>
+            <div class="tab other">
+                <h1>Lainnya</h1>
+                <p>Bantu rekruiter mengenalmu!</p>
+                <div class="info" id="other-info">
+                    <img src="./assets/info.svg" alt="info">
+                    Anda bisa melewati halaman ini dan melanjutkan ke langkah berikutnya.
+                </div>
+                <hr>
+                <div id="other-wrapper">
+                    <h5>Rekomendasi</h5>
+                    <div id="other-box"></div>
+                    <button class="add" id="addOthers">
+                        Tambah Rekomendasi
+                        <img src="./assets/add.svg" alt="add">
+                    </button>
+                </div>
+                <div id="other-form"></div>
+            </div>
+
+            <div id="tab-navigation">
+                <hr>
+                <div class="btn-container" id="main-btn" style="overflow:auto;">
+                    <div class="btn-box">
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Sebelumnya</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Selanjutnya</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="preview">
+            <img src="./assets/cv-1.png" alt="cv-1">
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="./form-script.js"></script>
+</body>
+
+</html>
