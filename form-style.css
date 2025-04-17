@@ -1,9 +1,15 @@
 :root {
     --primary: #FF8B13;
     --secondary: #FFCB99;
+    --light: #FFF4E9;
     --black: #222;
     --white: #FFF;
-    --gray: #666;
+    --light-gray: #E6E6E6;
+    --medium-dark-gray: #939393;
+    --dark-gray: #666;
+    --red: #f00073;
+    --invalid-red: #ffdddd;
+    --blue: #0A83B5;
 }
 
 *,
@@ -27,7 +33,7 @@ p {
 }
 
 hr {
-    border-top: var(--bs-border-width) solid #939393;
+    border-top: var(--bs-border-width) solid var(--medium-dark-gray);
     margin: 1.5rem 0;
 }
 
@@ -75,7 +81,7 @@ main {
 }
 
 #regForm {
-    background-color: #ffffff;
+    background-color: var(--white);
     margin: 100px auto;
     padding: 40px;
     width: 70%;
@@ -85,8 +91,8 @@ main {
 input,
 #fileInput {
     border-radius: 8px;
-    border: 1px solid #e6e6e6;
-    background: #FFF;
+    border: 1px solid var(--light-gray);
+    background: var(--white);
     padding: 12px;
     width: 100%;
 }
@@ -102,14 +108,14 @@ input,
 }
 
 .required {
-    color: #F00073;
+    color: var(--red);
 }
 
 #description,
 #experience,
 #skill {
     border-radius: 8px;
-    border: 1px solid var(--Neutral-Color-50, #E6E6E6);
+    border: 1px solid var(--light-gray);
     position: relative;
     resize: none;
     width: 100%;
@@ -121,8 +127,10 @@ input,
     white-space: normal;
 }
 
-#countInfo, #countExperience, #countSkill{
-    color: #666;
+#countInfo,
+#countExperience,
+#countSkill {
+    color: var(--dark-gray);
     text-align: right;
 }
 
@@ -165,7 +173,7 @@ input,
     height: 12px;
     width: 118px;
     margin: 0 2px;
-    background-color: #e6e6e6;
+    background-color: var(--light-gray);
     border-radius: 8px;
     display: block;
 }
@@ -176,7 +184,7 @@ input,
 }
 
 .step.finish {
-    background-color: #FF8B13;
+    background-color: var(--primary);
 }
 
 .step-item p {
@@ -202,7 +210,7 @@ input,
 .preview {
     display: none;
     border-radius: 16px;
-    background: #FFF4E9;
+    background: var(--light);
     padding: 21px 32px;
     flex-grow: 0;
     max-width: 80%;
@@ -288,8 +296,8 @@ input[type="file"] {
 #saveExp,
 #submit {
     border-radius: 8px;
-    border: 0.75px solid #FFF4E9;
-    background: #FF8B13;
+    border: 0.75px solid var(--light);
+    background: var(--primary);
     box-shadow: 0px 0px 8px 0px rgba(255, 139, 19, 0.32);
     color: var(--white);
 
@@ -299,8 +307,8 @@ input[type="file"] {
 #backExp,
 #back {
     border-radius: 8px;
-    border: 0.75px solid var(--Neutral-Color-50, #E6E6E6);
-    background: #FFF;
+    border: 0.75px solid var(--light-gray);
+    background: var(--white);
     box-shadow: 0px 0px 24px 0px rgba(255, 216, 178, 0.08);
 }
 
@@ -308,8 +316,8 @@ input[type="file"] {
 .add {
     color: var(--primary);
     border-radius: 8px;
-    border: 0.75px solid #E6E6E6;
-    background: #FFF;
+    border: 0.75px solid var(--light-gray);
+    background: var(--white);
     box-shadow: 0px 0px 24px 0px rgba(255, 216, 178, 0.08);
     display: flex;
     gap: 10px;
@@ -332,7 +340,7 @@ input[type="file"] {
     margin: 12px 0;
     padding: 6px 16px;
     word-wrap: break-word;
-    color: #0A83B5;
+    color: var(--blue);
     font-feature-settings: 'liga' off, 'clig' off;
     font-family: Inter;
     font-size: 12px;
