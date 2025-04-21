@@ -50,29 +50,31 @@ function validateForm() {
     textareas = x[currentTab].getElementsByTagName("textarea");
     select = x[currentTab].getElementsByTagName("select")
 
-    // Validate input fields
-    for (i = 0; i < inputs.length; i++) {
-        if (inputs[i].value == "") {
-            inputs[i].className += " invalid";
-            valid = false;
+    /**
+        // Validate input fields
+        for (i = 0; i < inputs.length; i++) {
+            if (inputs[i].value == "") {
+                inputs[i].className += " invalid";
+                valid = false;
+            }
         }
-    }
-
-    // Validate textarea fields
-    for (i = 0; i < textareas.length; i++) {
-        if (textareas[i].value == "") {
-            textareas[i].className += " invalid";
-            valid = false;
+    
+        // Validate textarea fields
+        for (i = 0; i < textareas.length; i++) {
+            if (textareas[i].value == "") {
+                textareas[i].className += " invalid";
+                valid = false;
+            }
         }
-    }
-
-    // Validate select fields
-    for (i = 0; i < select.length; i++) {
-        if (select[i].value == "") {
-            select[i].className += " invalid";
-            valid = false;
+    
+        // Validate select fields
+        for (i = 0; i < select.length; i++) {
+            if (select[i].value == "") {
+                select[i].className += " invalid";
+                valid = false;
+            }
         }
-    }
+    */
 
     // If valid, mark the step as finished and valid:
     if (valid) {
@@ -395,7 +397,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
         if (!position && !company && !startMonth && !startYear && !endMonth && !endYear && !experience) return;
 
         const inputDiv = document.createElement('div');
-        inputDiv.setAttribute('id', 'experienceInput')
+        inputDiv.setAttribute('class', 'inputBox')
         inputDiv.innerHTML = `
         <div class= 'inputHeading'>
         <div class= 'company'>
@@ -408,13 +410,6 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
         <li id = 'experienceDesc'>${experience}</li>
         </ul>
       `;
-        inputDiv.style.marginBottom = '1rem';
-        inputDiv.style.padding = '1rem';
-        inputDiv.style.border = '1px solid #EBEBEB';
-        inputDiv.style.borderRadius = '8px';
-        inputDiv.style.backgroundColor = '#FFF';
-        inputDiv.style.boxShadow = '0px 2px 24px 0px rgba(34, 34, 34, 0.08)';
-
 
         document.getElementById('experience-box').appendChild(inputDiv);
 
@@ -661,7 +656,7 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
         if (!major && !institution && !startMonth && !startYear && !endMonth && !endYear && !experience) return;
 
         const inputDiv = document.createElement('div');
-        inputDiv.setAttribute('id', 'experienceInput')
+        inputDiv.setAttribute('class', 'inputBox')
         inputDiv.innerHTML = `
         <div class= 'inputHeading'>
         <div class= 'company'>
@@ -671,13 +666,6 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
         <p class ='date' id ='educationDate'>(${startMonth} ${startYear} - ${endMonth} ${endYear})</p>
         </div>
       `;
-        inputDiv.style.marginBottom = '1rem';
-        inputDiv.style.padding = '1rem';
-        inputDiv.style.border = '1px solid #EBEBEB';
-        inputDiv.style.borderRadius = '8px';
-        inputDiv.style.backgroundColor = '#FFF';
-        inputDiv.style.boxShadow = '0px 2px 24px 0px rgba(34, 34, 34, 0.08)';
-
 
         document.getElementById('education-box').appendChild(inputDiv);
 
@@ -824,7 +812,7 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
         if (!certificate && !certificateInstitution && !certificateNumber && !certificateYear) return;
 
         const inputDiv = document.createElement('div');
-        inputDiv.setAttribute('id', 'certificateInput')
+        inputDiv.setAttribute('class', 'inputBox')
         inputDiv.innerHTML = `
         <div class= 'inputHeading'>
         <div class= 'company'>
@@ -834,13 +822,6 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
         <p class ='date' id ='educationDate'>(${certificateYear})</p>
         </div>
       `;
-        inputDiv.style.marginBottom = '1rem';
-        inputDiv.style.padding = '1rem';
-        inputDiv.style.border = '1px solid #EBEBEB';
-        inputDiv.style.borderRadius = '8px';
-        inputDiv.style.backgroundColor = '#FFF';
-        inputDiv.style.boxShadow = '0px 2px 24px 0px rgba(34, 34, 34, 0.08)';
-
 
         document.getElementById('certification-box').appendChild(inputDiv);
 
@@ -962,7 +943,7 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
         if (!skill && !skillDescription) return;
 
         const inputDiv = document.createElement('div');
-        inputDiv.setAttribute('id', 'skillNameInput')
+        inputDiv.setAttribute('class', 'inputBox');
         inputDiv.innerHTML = `
         <div class="inputHeading">
             <p class='subheading' id='skillNameInput'>${skill}</p>
@@ -971,13 +952,6 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
         <li id="skillDescription">${skillDescription}</li>
         </ul>
       `;
-        inputDiv.style.marginBottom = '1rem';
-        inputDiv.style.padding = '1rem';
-        inputDiv.style.border = '1px solid #EBEBEB';
-        inputDiv.style.borderRadius = '8px';
-        inputDiv.style.backgroundColor = '#FFF';
-        inputDiv.style.boxShadow = '0px 2px 24px 0px rgba(34, 34, 34, 0.08)';
-
 
         document.getElementById("skill-box").appendChild(inputDiv);
 
