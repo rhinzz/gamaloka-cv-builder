@@ -118,11 +118,11 @@ textInput.addEventListener('input', function () {
 document.getElementById("addExperience").addEventListener("click", (e) => {
     e.preventDefault();
 
-    document.getElementById("experience-wrapper").style.display = "none";
-    document.getElementById("tab-navigation").style.display = "none";
+    document.getElementById("experienceWrapper").style.display = "none";
+    document.getElementById("tabNavigation").style.display = "none";
 
     const newFormGroup = document.createElement("div");
-    newFormGroup.className = "experience-form-group";
+    newFormGroup.className = "experienceFormGroup";
 
     // Label
     let positionTag = document.createElement("label");
@@ -351,7 +351,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
     newFormGroup.appendChild(btnContainer);
     newFormGroup.appendChild(br.cloneNode());
 
-    document.getElementById("experience-form").appendChild(newFormGroup);
+    document.getElementById("experienceForm").appendChild(newFormGroup);
 
     // Word Counter
     let textInput = document.getElementById('experience');
@@ -375,10 +375,10 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
     document.getElementById("back").addEventListener("click", (e) => {
         e.preventDefault();
 
-        document.getElementById("experience-wrapper").style.display = "block";
-        document.getElementById("tab-navigation").style.display = "block";
+        document.getElementById("experienceWrapper").style.display = "block";
+        document.getElementById("tabNavigation").style.display = "block";
 
-        const form = document.getElementsByClassName('experience-form-group')[0];
+        const form = document.getElementsByClassName('experienceFormGroup')[0];
         form.remove();
     });
 
@@ -411,12 +411,12 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
         </ul>
       `;
 
-        document.getElementById('experience-box').appendChild(inputDiv);
+        document.getElementById('experienceBox').appendChild(inputDiv);
 
-        document.getElementById("experience-wrapper").style.display = "block";
-        document.getElementById("tab-navigation").style.display = "block";
+        document.getElementById("experienceWrapper").style.display = "block";
+        document.getElementById("tabNavigation").style.display = "block";
 
-        const form = document.getElementsByClassName('experience-form-group')[0];
+        const form = document.getElementsByClassName('experienceFormGroup')[0];
         form.remove();
     })
 
@@ -428,11 +428,11 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
 document.getElementById("addEducation").addEventListener("click", (e) => {
     e.preventDefault();
 
-    document.getElementById("education-wrapper").style.display = "none";
-    document.getElementById("tab-navigation").style.display = "none";
+    document.getElementById("educationWrapper").style.display = "none";
+    document.getElementById("tabNavigation").style.display = "none";
 
     const newFormGroup = document.createElement('div');
-    newFormGroup.className = 'education-form-group';
+    newFormGroup.className = 'educationFormGroup';
 
     // Label
     let majorTag = document.createElement('label');
@@ -630,15 +630,15 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
     newFormGroup.appendChild(btnContainer);
     newFormGroup.appendChild(br.cloneNode());
 
-    document.getElementById("education-form").appendChild(newFormGroup);
+    document.getElementById("educationForm").appendChild(newFormGroup);
 
     document.getElementById("back").addEventListener("click", (e) => {
         e.preventDefault();
 
-        document.getElementById("education-wrapper").style.display = "block";
-        document.getElementById("tab-navigation").style.display = "block";
+        document.getElementById("educationWrapper").style.display = "block";
+        document.getElementById("tabNavigation").style.display = "block";
 
-        const form = document.getElementsByClassName('education-form-group')[0];
+        const form = document.getElementsByClassName('educationFormGroup')[0];
         form.remove();
     });
 
@@ -667,15 +667,15 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
         </div>
       `;
 
-        document.getElementById('education-box').appendChild(inputDiv);
+        document.getElementById('educationBox').appendChild(inputDiv);
 
-        document.getElementById("education-wrapper").style.display = "block";
-        document.getElementById("tab-navigation").style.display = "block";
+        document.getElementById("educationWrapper").style.display = "block";
+        document.getElementById("tabNavigation").style.display = "block";
         document.getElementById("addEducation").style.display = "none";
         document.getElementById("info").style.display = "none";
 
 
-        const form = document.getElementsByClassName('education-form-group')[0];
+        const form = document.getElementsByClassName('educationFormGroup')[0];
         form.remove();
     })
 
@@ -685,11 +685,11 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
 document.getElementById("addCertificate").addEventListener("click", (e) => {
     e.preventDefault();
 
-    document.getElementById("education-wrapper").style.display = "none";
-    document.getElementById("tab-navigation").style.display = "none";
+    document.getElementById("educationWrapper").style.display = "none";
+    document.getElementById("tabNavigation").style.display = "none";
 
     const newFormGroup = document.createElement('div');
-    newFormGroup.className = 'certificate-form-group';
+    newFormGroup.className = 'certificateFormGroup';
 
     // Label
     let certificateTag = document.createElement('label');
@@ -788,15 +788,15 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
     newFormGroup.appendChild(btnContainer);
     newFormGroup.appendChild(br.cloneNode());
 
-    document.getElementById("education-form").appendChild(newFormGroup);
+    document.getElementById("educationForm").appendChild(newFormGroup);
 
     document.getElementById("back").addEventListener("click", (e) => {
         e.preventDefault();
 
-        document.getElementById("education-wrapper").style.display = "block";
-        document.getElementById("tab-navigation").style.display = "block";
+        document.getElementById("educationWrapper").style.display = "block";
+        document.getElementById("tabNavigation").style.display = "block";
 
-        const form = document.getElementsByClassName('certificate-form-group')[0];
+        const form = document.getElementsByClassName('certificateFormGroup')[0];
         form.remove();
     });
 
@@ -823,13 +823,13 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
         </div>
       `;
 
-        document.getElementById('certification-box').appendChild(inputDiv);
+        document.getElementById('certificationBox').appendChild(inputDiv);
 
-        document.getElementById("education-wrapper").style.display = "block";
-        document.getElementById("tab-navigation").style.display = "block";
+        document.getElementById("educationWrapper").style.display = "block";
+        document.getElementById("tabNavigation").style.display = "block";
 
 
-        const form = document.getElementsByClassName('certificate-form-group')[0];
+        const form = document.getElementsByClassName('certificateFormGroup')[0];
         form.remove();
     })
 
@@ -839,11 +839,11 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
 document.getElementById("addSkills").addEventListener("click", (e) => {
     e.preventDefault();
 
-    document.getElementById("skills-wrapper").style.display = "none";
-    document.getElementById("tab-navigation").style.display = "none";
+    document.getElementById("skillsWrapper").style.display = "none";
+    document.getElementById("tabNavigation").style.display = "none";
 
     const newFormGroup = document.createElement('div');
-    newFormGroup.className = 'skills-form-group';
+    newFormGroup.className = 'skillsFormGroup';
 
     // Label
     let skillTag = document.createElement('label');
@@ -902,7 +902,7 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
     newFormGroup.appendChild(btnContainer);
     newFormGroup.appendChild(br.cloneNode());
 
-    document.getElementById("skills-form").appendChild(newFormGroup);
+    document.getElementById("skillsForm").appendChild(newFormGroup);
 
     // Word Counter
     let textInput = document.getElementById('skill');
@@ -926,10 +926,10 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
     document.getElementById("back").addEventListener("click", (e) => {
         e.preventDefault();
 
-        document.getElementById("skills-wrapper").style.display = "block";
-        document.getElementById("tab-navigation").style.display = "block";
+        document.getElementById("skillsWrapper").style.display = "block";
+        document.getElementById("tabNavigation").style.display = "block";
 
-        const form = document.getElementsByClassName('skills-form-group')[0];
+        const form = document.getElementsByClassName('skillsFormGroup')[0];
         form.remove();
     });
 
@@ -953,12 +953,12 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
         </ul>
       `;
 
-        document.getElementById("skill-box").appendChild(inputDiv);
+        document.getElementById("skillBox").appendChild(inputDiv);
 
-        document.getElementById("skills-wrapper").style.display = "block";
-        document.getElementById("tab-navigation").style.display = "block";
+        document.getElementById("skillsWrapper").style.display = "block";
+        document.getElementById("tabNavigation").style.display = "block";
 
-        const form = document.getElementsByClassName("skills-form-group")[0];
+        const form = document.getElementsByClassName("skillsFormGroup")[0];
         form.remove();
     })
 
@@ -968,12 +968,12 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
 document.getElementById("addOthers").addEventListener("click", (e) => {
     e.preventDefault();
 
-    document.getElementById("other-wrapper").style.display = "none";
-    document.getElementById("other-info").style.display = "none";
-    document.getElementById("tab-navigation").style.display = "none";
+    document.getElementById("otherWrapper").style.display = "none";
+    document.getElementById("otherInfo").style.display = "none";
+    document.getElementById("tabNavigation").style.display = "none";
 
     const newFormGroup = document.createElement('div');
-    newFormGroup.className = 'other-form-group';
+    newFormGroup.className = 'otherFormGroup';
 
     // Label
     let managerNumberTag = document.createElement('label');
@@ -1066,16 +1066,16 @@ document.getElementById("addOthers").addEventListener("click", (e) => {
     newFormGroup.appendChild(br.cloneNode());
 
 
-    document.getElementById("other-form").appendChild(newFormGroup);
+    document.getElementById("otherForm").appendChild(newFormGroup);
 
     document.getElementById("back").addEventListener("click", (e) => {
         e.preventDefault();
 
-        document.getElementById("other-wrapper").style.display = "block";
-        document.getElementById("other-info").style.display = "block";
-        document.getElementById("tab-navigation").style.display = "block";
+        document.getElementById("otherWrapper").style.display = "block";
+        document.getElementById("otherInfo").style.display = "block";
+        document.getElementById("tabNavigation").style.display = "block";
 
-        const form = document.getElementsByClassName('other-form-group')[0];
+        const form = document.getElementsByClassName('otherFormGroup')[0];
         form.remove();
     });
 
@@ -1091,29 +1091,21 @@ document.getElementById("addOthers").addEventListener("click", (e) => {
         if (!managerNumber && !company && !manager) return;
 
         const inputDiv = document.createElement('div');
-        inputDiv.setAttribute('id', 'otherInput')
+        inputDiv.setAttribute('class', 'inputBox')
         inputDiv.innerHTML = `
         <div class='inputHeading'>
             <p class='subheading' id='companyInput'>${company}</p>
         </div>
         <p id='managerContactInput' style="margin:0">${managerNumber} .a.n ${manager}</p>
       `;
-        inputDiv.style.marginBottom = '1rem';
-        inputDiv.style.padding = '1rem';
-        inputDiv.style.border = '1px solid #EBEBEB';
-        inputDiv.style.borderRadius = '8px';
-        inputDiv.style.backgroundColor = '#FFF';
-        inputDiv.style.boxShadow = '0px 2px 24px 0px rgba(34, 34, 34, 0.08)';
 
+        document.getElementById('otherBox').appendChild(inputDiv);
 
-        document.getElementById('other-box').appendChild(inputDiv);
-
-        document.getElementById("other-wrapper").style.display = "block";
-        document.getElementById("tab-navigation").style.display = "block";
-        document.getElementById("other-info").style.display = "block";
-
-
-        const form = document.getElementsByClassName('other-form-group')[0];
+        document.getElementById("otherWrapper").style.display = "block";
+        document.getElementById("tabNavigation").style.display = "block";
+        document.getElementById("otherInfo").style.display = "block";
+        
+        const form = document.getElementsByClassName('otherFormGroup')[0];
         form.remove();
     })
 

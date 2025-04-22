@@ -155,7 +155,7 @@ input,
 }
 
 
-.step-wrapper {
+.stepWrapper {
     margin-bottom: 2.5rem;
     display: none;
 }
@@ -164,7 +164,7 @@ input,
     margin-bottom: 12px;
 }
 
-.step-container {
+.stepContainer {
     display: flex;
     gap: 12px;
 }
@@ -187,7 +187,7 @@ input,
     background-color: var(--primary);
 }
 
-.step-item p {
+.stepItem p {
     font-size: 14px;
     text-align: center;
 }
@@ -224,19 +224,19 @@ input,
     margin-bottom: 12px;
 }
 
-.experience-form-group button,
-.education-form-group button,
-.certificate-form-group button,
-.skills-form-group button,
-.other-form-group button {
+.experienceFormGroup button,
+.educationFormGroup button,
+.certificateFormGroup button,
+.skillsFormGroup button,
+.otherFormGroup button {
     padding: 14px 40px;
 }
 
-.experience-form-group input,
-.education-form-group input,
-.certificate-form-group input,
-.skills-form-group input,
-.other-form-group input {
+.experienceFormGroup input,
+.educationFormGroup input,
+.certificateFormGroup input,
+.skillsFormGroup input,
+.otherFormGroup input {
     margin-bottom: 12px;
 }
 
@@ -371,7 +371,7 @@ input[type="file"] {
         padding: 14px 40px;
     }
 
-    .step-wrapper {
+    .stepWrapper {
         display: block;
     }
 }
