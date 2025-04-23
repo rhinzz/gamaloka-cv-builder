@@ -341,16 +341,13 @@ input[type="file"] {
     padding: 6px 16px;
     word-wrap: break-word;
     color: var(--blue);
-    font-feature-settings: 'liga' off, 'clig' off;
     font-family: Inter;
     font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 140%;
     letter-spacing: -0.24px;
 }
 
-.inputBox{
+.inputBox {
     border: 1px solid #EBEBEB;
     border-radius: 8px;
     background-color: #FFF;

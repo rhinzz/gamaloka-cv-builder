@@ -68,13 +68,14 @@
                     placeholder="Jelaskan informasi singkat tentang Anda, pengalaman Anda, dan keahlian Anda"></textarea>
                 <p id="countInfo"></p>
                 <label>Nama Lengkap<span class="required">*</span></label>
-                <input class="form-control" oninput="this.classList.remove('invalid')" placeholder="Masukkan nama lengkap" style="margin-bottom: 1rem;">
+                <input class="form-control" oninput="this.classList.remove('invalid')"
+                    placeholder="Masukkan nama lengkap" style="margin-bottom: 1rem;">
 
                 <div class="row">
                     <div class="col">
                         <label>No. Whatsapp<span class="required">*</span></label>
                         <input type="tel" class="form-control" placeholder="Masukkan nomor Whatsapp Anda"
-                            oninput="this.classList.remove('invalid')" >
+                            oninput="this.classList.remove('invalid')">
                     </div>
                     <div class="col">
                         <label>Email<span class="required">*</span></label>
@@ -85,7 +86,8 @@
                 <div class="row">
                     <div class="col">
                         <label>Provinsi<span class="required">*</span></label>
-                        <select class="form-select" aria-label="Default select example" oninput="this.classList.remove('invalid')">
+                        <select class="form-select" aria-label="Default select example"
+                            oninput="this.classList.remove('invalid')">
                             <option value="" selected>Pilih Provinsi</option>
                             <option value="1">DKI Jakarta</option>
                             <option value="2">Jawa Barat</option>
@@ -94,7 +96,8 @@
                     </div>
                     <div class="col">
                         <label>Kota<span class="required">*</span></label>
-                        <select class="form-select" aria-label="Default select example" oninput="this.classList.remove('invalid')">
+                        <select class="form-select" aria-label="Default select example"
+                            oninput="this.classList.remove('invalid')">
                             <option value="" selected>Pilih Kota</option>
                             <option value="1">Jakarta</option>
                             <option value="2">Bogor</option>
@@ -172,7 +175,7 @@
                 <hr>
                 <div id="otherWrapper">
                     <h5>Rekomendasi</h5>
-                    <div id="other-box"></div>
+                    <div id="otherBox"></div>
                     <button class="add" id="addOthers">
                         Tambah Rekomendasi
                         <img src="./assets/add.svg" alt="add">

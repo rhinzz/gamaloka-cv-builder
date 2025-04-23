@@ -44,37 +44,54 @@ function nextPrev(n) {
 
 function validateForm() {
     // This function deals with validation of the form fields
-    var x, inputs, textareas, select, i, valid = true;
+    let x, inputs, textareas, select, i, valid = true;
     x = document.getElementsByClassName("tab");
     inputs = x[currentTab].getElementsByTagName("input");
     textareas = x[currentTab].getElementsByTagName("textarea");
-    select = x[currentTab].getElementsByTagName("select")
+    select = x[currentTab].getElementsByTagName("select");
 
-    /**
-        // Validate input fields
-        for (i = 0; i < inputs.length; i++) {
-            if (inputs[i].value == "") {
-                inputs[i].className += " invalid";
-                valid = false;
-            }
+    if (currentTab == 1) {
+        if (document.getElementById("experienceBox").children.length < 1) {
+            valid = false;
         }
-    
-        // Validate textarea fields
-        for (i = 0; i < textareas.length; i++) {
-            if (textareas[i].value == "") {
-                textareas[i].className += " invalid";
-                valid = false;
-            }
+    } else if (currentTab == 2) {
+        if (document.getElementById("educationBox").children.length < 1) {
+            valid = false;
         }
-    
-        // Validate select fields
-        for (i = 0; i < select.length; i++) {
-            if (select[i].value == "") {
-                select[i].className += " invalid";
-                valid = false;
-            }
+        if (document.getElementById("certificationBox").children.length < 1) {
+            valid = false;
         }
-    */
+    } else if (currentTab == 3) {
+        if (document.getElementById("skillBox").children.length < 1) {
+            valid = false;
+        }
+    } else {
+        valid = true;
+    }
+
+    // Validate input fields
+    for (i = 0; i < inputs.length; i++) {
+        if (inputs[i].value == "") {
+            inputs[i].className += " invalid";
+            valid = false;
+        }
+    }
+
+    // Validate textarea fields
+    for (i = 0; i < textareas.length; i++) {
+        if (textareas[i].value == "") {
+            textareas[i].className += " invalid";
+            valid = false;
+        }
+    }
+
+    // Validate select fields
+    for (i = 0; i < select.length; i++) {
+        if (select[i].value == "") {
+            select[i].className += " invalid";
+            valid = false;
+        }
+    }
 
     // If valid, mark the step as finished and valid:
     if (valid) {
@@ -385,39 +402,78 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
     document.getElementById("submit").addEventListener("click", (e) => {
         e.preventDefault();
 
-        const position = document.getElementById('positionInput').value.trim();
-        const company = document.getElementById('companyInput').value.trim();
-        const startMonth = document.getElementById('startMonthInput').value;
-        const startYear = document.getElementById('startYearInput').value;
-        const endMonth = document.getElementById('endMonthInput').value;
-        const endYear = document.getElementById('endYearInput').value;
-        const experience = document.getElementById('experience').value.trim();
+        const parent = document.getElementById("experienceBox");
+        if (parent.children.length < 3) {
+            const position = document.getElementById('positionInput').value.trim();
+            const company = document.getElementById('companyInput').value.trim();
+            const startMonth = document.getElementById('startMonthInput').value;
+            const startYear = document.getElementById('startYearInput').value;
+            const endMonth = document.getElementById('endMonthInput').value;
+            const endYear = document.getElementById('endYearInput').value;
+            const experience = document.getElementById('experience').value.trim();
 
-        // If input empty return nothing    
-        if (!position && !company && !startMonth && !startYear && !endMonth && !endYear && !experience) return;
+            // If input empty return nothing    
+            if (!position && !company && !startMonth && !startYear && !endMonth && !endYear && !experience) return;
 
-        const inputDiv = document.createElement('div');
-        inputDiv.setAttribute('class', 'inputBox')
-        inputDiv.innerHTML = `
-        <div class= 'inputHeading'>
-        <div class= 'company'>
-        <p class='subheading' id='experiencePosition'>${position}</p>
-        <p id='experienceCompany'>${company}</p>
-        </div>
-        <p class ='date' id ='experienceDate'>(${startMonth} ${startYear} - ${endMonth} ${endYear})</p>
-        </div>
-        <ul>
-        <li id = 'experienceDesc'>${experience}</li>
-        </ul>
-      `;
+            const fragment = document.createDocumentFragment();
 
-        document.getElementById('experienceBox').appendChild(inputDiv);
+            // Create the main container div
+            const inputDiv = document.createElement('div');
+            inputDiv.className = 'inputBox';
 
-        document.getElementById("experienceWrapper").style.display = "block";
-        document.getElementById("tabNavigation").style.display = "block";
+            // Create the inputHeading div
+            const inputHeading = document.createElement('div');
+            inputHeading.className = 'inputHeading';
 
-        const form = document.getElementsByClassName('experienceFormGroup')[0];
-        form.remove();
+            // Create the company div
+            const companyDiv = document.createElement('div');
+            companyDiv.className = 'company';
+
+            const positionP = document.createElement('p');
+            positionP.className = 'subheading';
+            positionP.textContent = position;
+
+            const companyP = document.createElement('p');
+            companyP.textContent = company;
+
+            companyDiv.appendChild(positionP);
+            companyDiv.appendChild(companyP);
+
+            // Create the date paragraph
+            const dateP = document.createElement('p');
+            dateP.className = 'date';
+            dateP.textContent = `(${startMonth} ${startYear} - ${endMonth} ${endYear})`;
+
+            // Append company and date to inputHeading
+            inputHeading.appendChild(companyDiv);
+            inputHeading.appendChild(dateP);
+
+            // Create the experience list
+            const ul = document.createElement('ul');
+            const li = document.createElement('li');
+            li.textContent = experience;
+            ul.appendChild(li);
+
+            // Assemble the whole inputDiv
+            inputDiv.appendChild(inputHeading);
+            inputDiv.appendChild(ul);
+
+            // Append the inputDiv to the fragment
+            fragment.appendChild(inputDiv);
+
+            // Append to parent
+            document.getElementById('experienceBox').appendChild(fragment);
+
+            document.getElementById("experienceWrapper").style.display = "block";
+            document.getElementById("tabNavigation").style.display = "block";
+
+            const form = document.getElementsByClassName('experienceFormGroup')[0];
+            form.remove();
+        }
+
+        if (parent.children.length >= 3) {
+            document.getElementById("addExperience").disabled = true;
+        }
     })
 
 })
@@ -655,19 +711,48 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
         // If input empty return nothing    
         if (!major && !institution && !startMonth && !startYear && !endMonth && !endYear && !experience) return;
 
-        const inputDiv = document.createElement('div');
-        inputDiv.setAttribute('class', 'inputBox')
-        inputDiv.innerHTML = `
-        <div class= 'inputHeading'>
-        <div class= 'company'>
-        <p class='subheading' id='institutionInput'>${institution}</p>
-        <p id='majorInput'>${major}</p>
-        </div>
-        <p class ='date' id ='educationDate'>(${startMonth} ${startYear} - ${endMonth} ${endYear})</p>
-        </div>
-      `;
+        // Create fragment
+        const fragment = document.createDocumentFragment();
 
-        document.getElementById('educationBox').appendChild(inputDiv);
+        // Create the main container div
+        const inputDiv = document.createElement('div');
+        inputDiv.className = "inputBox";
+
+        // Create the inputHeading div
+        const inputHeading = document.createElement('div');
+        inputHeading.className = "inputHeading";
+
+        // Create the company (institution info) div
+        const companyDiv = document.createElement('div');
+        companyDiv.className = "company";
+
+        const subheading = document.createElement('p');
+        subheading.className = "subheading";
+        subheading.textContent = `${institution}`;
+
+        const majorP = document.createElement('p');
+        majorP.textContent = `${major}`;
+
+        companyDiv.appendChild(subheading);
+        companyDiv.appendChild(majorP);
+
+        // Create the date paragraph
+        const dateP = document.createElement('p');
+        dateP.className = "date";
+        dateP.textContent = `(${startMonth} ${startYear} - ${endMonth} ${endYear})`
+
+        // Assemble the inputHeading
+        inputHeading.appendChild(companyDiv);
+        inputHeading.appendChild(dateP);
+
+        // Append inputHeading to inputDiv
+        inputDiv.appendChild(inputHeading);
+
+        // Append inputDiv to the fragment
+        fragment.appendChild(inputDiv);
+
+        // Append to parent
+        document.getElementById("educationBox").appendChild(fragment);
 
         document.getElementById("educationWrapper").style.display = "block";
         document.getElementById("tabNavigation").style.display = "block";
@@ -803,34 +888,70 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
     document.getElementById("submit").addEventListener("click", (e) => {
         e.preventDefault();
 
-        const certificate = document.getElementById('certificateInput').value.trim();
-        const certificateInstitution = document.getElementById('certificateInstitutionInput').value.trim();
-        const certificateNumber = document.getElementById('certificateNumberInput').value.trim();
-        const certificateYear = document.getElementById('certificateYearInput').value;
+        const parent = document.getElementById("certificationBox");
+        if (parent.children.length < 3) {
+            const certificate = document.getElementById('certificateInput').value.trim();
+            const certificateInstitution = document.getElementById('certificateInstitutionInput').value.trim();
+            const certificateNumber = document.getElementById('certificateNumberInput').value.trim();
+            const certificateYear = document.getElementById('certificateYearInput').value;
 
-        // If input empty return nothing    
-        if (!certificate && !certificateInstitution && !certificateNumber && !certificateYear) return;
+            // If input empty return nothing    
+            if (!certificate && !certificateInstitution && !certificateNumber && !certificateYear) return;
 
-        const inputDiv = document.createElement('div');
-        inputDiv.setAttribute('class', 'inputBox')
-        inputDiv.innerHTML = `
-        <div class= 'inputHeading'>
-        <div class= 'company'>
-        <p class='subheading' id='certificateInput'>${certificate}</p>
-        <p id= certificateInstitutionInput'>${certificateInstitution}</p>
-        </div>
-        <p class ='date' id ='educationDate'>(${certificateYear})</p>
-        </div>
-      `;
+            // Create fragment
+            const fragment = document.createDocumentFragment();
 
-        document.getElementById('certificationBox').appendChild(inputDiv);
+            // Create the main container div
+            const inputDiv = document.createElement('div');
+            inputDiv.className = 'inputBox';
 
-        document.getElementById("educationWrapper").style.display = "block";
-        document.getElementById("tabNavigation").style.display = "block";
+            // Create the inputHeading div
+            const inputHeading = document.createElement('div');
+            inputHeading.className = 'inputHeading';
+
+            // Create the company (certificate info) div
+            const companyDiv = document.createElement('div');
+            companyDiv.className = 'company';
+
+            const certTitle = document.createElement('p');
+            certTitle.className = 'subheading';
+            certTitle.textContent = certificate;
+
+            const certInstitution = document.createElement('p');
+            certInstitution.textContent = certificateInstitution;
+
+            companyDiv.appendChild(certTitle);
+            companyDiv.appendChild(certInstitution);
+
+            // Create the date paragraph
+            const dateP = document.createElement('p');
+            dateP.className = 'date';
+            dateP.textContent = `(${certificateYear})`;
+
+            // Assemble the inputHeading
+            inputHeading.appendChild(companyDiv);
+            inputHeading.appendChild(dateP);
+
+            // Append inputHeading to inputDiv
+            inputDiv.appendChild(inputHeading);
+
+            // Append inputDiv to the fragment
+            fragment.appendChild(inputDiv);
+
+            // Append to parent
+            document.getElementById('certificationBox').appendChild(fragment);
+
+            document.getElementById("educationWrapper").style.display = "block";
+            document.getElementById("tabNavigation").style.display = "block";
 
 
-        const form = document.getElementsByClassName('certificateFormGroup')[0];
-        form.remove();
+            const form = document.getElementsByClassName('certificateFormGroup')[0];
+            form.remove();
+        }
+
+        if (parent.children.length >= 3) {
+            document.getElementById("addCertificate").disabled = true;
+        }
     })
 
 })
@@ -936,30 +1057,55 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
     document.getElementById("submit").addEventListener("click", (e) => {
         e.preventDefault();
 
-        const skill = document.getElementById('skillNameInput').value.trim();
-        const skillDescription = document.getElementById('skill').value.trim();
+        const parent = document.getElementById("skillBox");
+        if (parent.children.length < 3) {
+            const skill = document.getElementById('skillNameInput').value.trim();
+            const skillDescription = document.getElementById('skill').value.trim();
 
-        // If input empty return nothing    
-        if (!skill && !skillDescription) return;
+            // If input empty return nothing    
+            if (!skill && !skillDescription) return;
 
-        const inputDiv = document.createElement('div');
-        inputDiv.setAttribute('class', 'inputBox');
-        inputDiv.innerHTML = `
-        <div class="inputHeading">
-            <p class='subheading' id='skillNameInput'>${skill}</p>
-        </div>
-        <ul>
-        <li id="skillDescription">${skillDescription}</li>
-        </ul>
-      `;
+            const fragment = document.createDocumentFragment();
 
-        document.getElementById("skillBox").appendChild(inputDiv);
+            // Create the main container div
+            const inputDiv = document.createElement('div');
+            inputDiv.className = 'inputBox';
 
-        document.getElementById("skillsWrapper").style.display = "block";
-        document.getElementById("tabNavigation").style.display = "block";
+            // Create the heading container
+            const inputHeading = document.createElement('div');
+            inputHeading.className = 'inputHeading';
 
-        const form = document.getElementsByClassName("skillsFormGroup")[0];
-        form.remove();
+            // Create and append the skill paragraph
+            const skillP = document.createElement('p');
+            skillP.className = 'subheading';
+            skillP.textContent = skill;
+            inputHeading.appendChild(skillP);
+
+            // Create the unordered list with the skill description
+            const ul = document.createElement('ul');
+            const li = document.createElement('li');
+            li.textContent = skillDescription;
+            ul.appendChild(li);
+
+            // Assemble everything
+            inputDiv.appendChild(inputHeading);
+            inputDiv.appendChild(ul);
+            fragment.appendChild(inputDiv);
+
+            // Append fragment to parent
+            document.getElementById("skillBox").appendChild(fragment);
+
+            document.getElementById("skillsWrapper").style.display = "block";
+            document.getElementById("tabNavigation").style.display = "block";
+
+            const form = document.getElementsByClassName("skillsFormGroup")[0];
+            form.remove();
+        }
+
+        if (parent.children.length >= 3) {
+            document.getElementById("addSkills").disabled = true;
+        }
+
     })
 
 })
@@ -1082,31 +1228,57 @@ document.getElementById("addOthers").addEventListener("click", (e) => {
     document.getElementById("submit").addEventListener("click", (e) => {
         e.preventDefault();
 
-        const managerNumber = document.getElementById('managerNumberInput').value.trim();
-        const company = document.getElementById('companyInput').value.trim();
-        const manager = document.getElementById('managerInput').value.trim();
+        const parent = document.getElementById("otherBox");
+        if (parent.children.length < 3) {
+            const managerNumber = document.getElementById('managerNumberInput').value.trim();
+            const company = document.getElementById('companyInput').value.trim();
+            const manager = document.getElementById('managerInput').value.trim();
 
 
-        // If input empty return nothing    
-        if (!managerNumber && !company && !manager) return;
+            // If input empty return nothing    
+            if (!managerNumber && !company && !manager) return;
 
-        const inputDiv = document.createElement('div');
-        inputDiv.setAttribute('class', 'inputBox')
-        inputDiv.innerHTML = `
-        <div class='inputHeading'>
-            <p class='subheading' id='companyInput'>${company}</p>
-        </div>
-        <p id='managerContactInput' style="margin:0">${managerNumber} .a.n ${manager}</p>
-      `;
+            // Create fragment
+            const fragment = document.createDocumentFragment();
 
-        document.getElementById('otherBox').appendChild(inputDiv);
+            // Create the main container div
+            const inputDiv = document.createElement('div');
+            inputDiv.className = 'inputBox';
 
-        document.getElementById("otherWrapper").style.display = "block";
-        document.getElementById("tabNavigation").style.display = "block";
-        document.getElementById("otherInfo").style.display = "block";
-        
-        const form = document.getElementsByClassName('otherFormGroup')[0];
-        form.remove();
+            // Create the heading container
+            const inputHeading = document.createElement('div');
+            inputHeading.className = 'inputHeading';
+
+            // Add the company name as a subheading
+            const companyP = document.createElement('p');
+            companyP.className = 'subheading';
+            companyP.textContent = company;
+            inputHeading.appendChild(companyP);
+
+            // Create the manager line
+            const managerP = document.createElement('p');
+            managerP.style.margin = '0';
+            managerP.textContent = `${managerNumber} .a.n ${manager}`;
+
+            // Assemble
+            inputDiv.appendChild(inputHeading);
+            inputDiv.appendChild(managerP);
+            fragment.appendChild(inputDiv);
+
+            // Append to parent
+            document.getElementById('otherBox').appendChild(fragment);
+
+            document.getElementById("otherWrapper").style.display = "block";
+            document.getElementById("tabNavigation").style.display = "block";
+            document.getElementById("otherInfo").style.display = "block";
+
+            const form = document.getElementsByClassName('otherFormGroup')[0];
+            form.remove();
+        }
+        if (parent.children.length >= 3) {
+            document.getElementById("addOthers").disabled = true;
+        }
+
     })
 
 })
