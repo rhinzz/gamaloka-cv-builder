@@ -49,12 +49,11 @@ function validateForm() {
     inputs = x[currentTab].getElementsByTagName("input");
     textareas = x[currentTab].getElementsByTagName("textarea");
     select = x[currentTab].getElementsByTagName("select");
+    const warning = document.createElement("p");
+    warning.className = "warning"
+    warning.innerHTML = 'Semua <span class="required">*</span> wajib diisi';
 
-    if (currentTab == 1) {
-        if (document.getElementById("experienceBox").children.length < 1) {
-            valid = false;
-        }
-    } else if (currentTab == 2) {
+    if (currentTab == 2) {
         if (document.getElementById("educationBox").children.length < 1) {
             valid = false;
         }
@@ -72,7 +71,9 @@ function validateForm() {
     // Validate input fields
     for (i = 0; i < inputs.length; i++) {
         if (inputs[i].value == "") {
-            inputs[i].className += " invalid";
+            if (!document.querySelector(".warning")) {
+                document.getElementById("userForm").insertAdjacentElement("afterbegin", warning);
+            }
             valid = false;
         }
     }
@@ -80,7 +81,9 @@ function validateForm() {
     // Validate textarea fields
     for (i = 0; i < textareas.length; i++) {
         if (textareas[i].value == "") {
-            textareas[i].className += " invalid";
+            if (!document.querySelector(".warning")) {
+                document.getElementById("userForm").insertAdjacentElement("afterbegin", warning);
+            }
             valid = false;
         }
     }
@@ -88,13 +91,19 @@ function validateForm() {
     // Validate select fields
     for (i = 0; i < select.length; i++) {
         if (select[i].value == "") {
-            select[i].className += " invalid";
+            if (!document.querySelector(".warning")) {
+                document.getElementById("userForm").insertAdjacentElement("afterbegin", warning);
+            }
             valid = false;
         }
     }
 
+
     // If valid, mark the step as finished and valid:
     if (valid) {
+        if (document.querySelector(".warning")) {
+            document.querySelector(".warning").remove();
+        }
         document.getElementsByClassName("step")[currentTab].className += " finish";
     }
 
@@ -150,6 +159,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
 
     // Posisi
     let position = document.createElement("input");
+    position.className = "form-control";
     Object.assign(position, {
         id: "positionInput",
         placeholder: "Masukkan posisi Anda sebelumnya"
@@ -158,6 +168,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
 
     // Perusahaan
     let company = document.createElement("input");
+    company.className = "form-control";
     Object.assign(company, {
         id: "companyInput",
         placeholder: "Masukkan perusahaan Anda sebelumnya"
@@ -174,6 +185,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
     colStartMonth.className = "col";
 
     const startMonthSelect = document.createElement('select');
+    startMonthSelect.className = "form-select";
     Object.assign(startMonthSelect, {
         id: "startMonthInput",
         'aria-label': "Default select example"
@@ -314,6 +326,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
 
     // Pengalaman
     let experience = document.createElement("textarea");
+    experience.className = "form-control";
     let count = document.createElement("p");
     count.setAttribute("id", "countExperience")
     experienceTag.innerHTML = 'Deskripsi Pekerjaan<span class="required">*</span>';
@@ -344,9 +357,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
     let hr = document.createElement("hr");
 
     newFormGroup.appendChild(positionTag);
-    newFormGroup.appendChild(br.cloneNode());
     newFormGroup.appendChild(position);
-    newFormGroup.appendChild(br.cloneNode());
 
     newFormGroup.appendChild(companyTag);
     newFormGroup.appendChild(br.cloneNode());
@@ -361,7 +372,6 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
     newFormGroup.appendChild(experienceTag);
     newFormGroup.appendChild(br.cloneNode());
     newFormGroup.appendChild(experience);
-    newFormGroup.appendChild(br.cloneNode());
     newFormGroup.appendChild(count);
 
     newFormGroup.appendChild(hr.cloneNode())
@@ -392,9 +402,12 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
     document.getElementById("back").addEventListener("click", (e) => {
         e.preventDefault();
 
+        if (document.querySelector(".warning")) {
+            document.querySelector(".warning").remove();
+        }
+
         document.getElementById("experienceWrapper").style.display = "block";
         document.getElementById("tabNavigation").style.display = "block";
-
         const form = document.getElementsByClassName('experienceFormGroup')[0];
         form.remove();
     });
@@ -413,7 +426,15 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
             const experience = document.getElementById('experience').value.trim();
 
             // If input empty return nothing    
-            if (!position && !company && !startMonth && !startYear && !endMonth && !endYear && !experience) return;
+            if (!position || !company || !startMonth || !startYear || !endMonth || !endYear || !experience) {
+                if (!document.querySelector(".warning")) {
+                    const warning = document.createElement("p");
+                    warning.className = "warning"
+                    warning.innerHTML = 'Semua <span class="required">*</span> wajib diisi';
+                    document.getElementById("experienceForm").insertAdjacentElement("afterbegin", warning);
+                }
+                return;
+            };
 
             const fragment = document.createDocumentFragment();
 
@@ -467,6 +488,10 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
             document.getElementById("experienceWrapper").style.display = "block";
             document.getElementById("tabNavigation").style.display = "block";
 
+            if (document.querySelector(".warning")) {
+                document.querySelector(".warning").remove();
+            }
+
             const form = document.getElementsByClassName('experienceFormGroup')[0];
             form.remove();
         }
@@ -498,6 +523,7 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
 
     // Jurusan
     let major = document.createElement("input");
+    major.className = "form-control";
     Object.assign(major, {
         id: "majorInput",
         placeholder: "Masukkan jurusan Anda sebelumnya"
@@ -507,6 +533,7 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
 
     // Institusi
     let institution = document.createElement("input");
+    institution.className = "form-control";
     Object.assign(institution, {
         id: "institutionInput",
         placeholder: "Masukkan institusi Anda sebelumnya"
@@ -694,6 +721,10 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
         document.getElementById("educationWrapper").style.display = "block";
         document.getElementById("tabNavigation").style.display = "block";
 
+        if (document.querySelector(".warning")) {
+            document.querySelector(".warning").remove();
+        }
+
         const form = document.getElementsByClassName('educationFormGroup')[0];
         form.remove();
     });
@@ -709,7 +740,15 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
         const endYear = document.getElementById('educationEndYearInput').value;
 
         // If input empty return nothing    
-        if (!major && !institution && !startMonth && !startYear && !endMonth && !endYear && !experience) return;
+        if (!major || !institution || !startMonth || !startYear || !endMonth || !endYear) {
+            if (!document.querySelector(".warning")) {
+                const warning = document.createElement("p");
+                warning.className = "warning"
+                warning.innerHTML = 'Semua <span class="required">*</span> wajib diisi';
+                document.getElementById("educationForm").insertAdjacentElement("afterbegin", warning);
+            }
+            return;
+        };
 
         // Create fragment
         const fragment = document.createDocumentFragment();
@@ -759,6 +798,9 @@ document.getElementById("addEducation").addEventListener("click", (e) => {
         document.getElementById("addEducation").style.display = "none";
         document.getElementById("info").style.display = "none";
 
+        if (document.querySelector(".warning")) {
+            document.querySelector(".warning").remove();
+        }
 
         const form = document.getElementsByClassName('educationFormGroup')[0];
         form.remove();
@@ -784,6 +826,7 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
 
     // Sertifikat
     let certificate = document.createElement("input");
+    certificate.className = "form-control";
     Object.assign(certificate, {
         id: "certificateInput",
         placeholder: "Masukkan nama sertifikasi yang Anda punya"
@@ -793,6 +836,7 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
 
     // Institusi
     let certificateInstitution = document.createElement("input");
+    certificateInstitution.className = "form-control";
     Object.assign(certificateInstitution, {
         id: "certificateInstitutionInput",
         placeholder: "Masukkan lembaga penyelenggara sertifikasi yang Anda punya"
@@ -802,6 +846,7 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
 
     // Nomor Sertifikat
     let certificateNumber = document.createElement("input");
+    certificateNumber.className = "form-control";
     Object.assign(certificateNumber, {
         id: "certificateNumberInput",
         placeholder: "Masukkan no. lisensi dari sertifikasi yang Anda punya",
@@ -881,6 +926,10 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
         document.getElementById("educationWrapper").style.display = "block";
         document.getElementById("tabNavigation").style.display = "block";
 
+        if (document.querySelector(".warning")) {
+            document.querySelector(".warning").remove();
+        }
+
         const form = document.getElementsByClassName('certificateFormGroup')[0];
         form.remove();
     });
@@ -896,7 +945,15 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
             const certificateYear = document.getElementById('certificateYearInput').value;
 
             // If input empty return nothing    
-            if (!certificate && !certificateInstitution && !certificateNumber && !certificateYear) return;
+            if (!certificate || !certificateInstitution || !certificateNumber || !certificateYear) {
+                if (!document.querySelector(".warning")) {
+                    const warning = document.createElement("p");
+                    warning.className = "warning"
+                    warning.innerHTML = 'Semua <span class="required">*</span> wajib diisi';
+                    document.getElementById("educationForm").insertAdjacentElement("afterbegin", warning);
+                }
+                return;
+            };
 
             // Create fragment
             const fragment = document.createDocumentFragment();
@@ -944,6 +1001,9 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
             document.getElementById("educationWrapper").style.display = "block";
             document.getElementById("tabNavigation").style.display = "block";
 
+            if (document.querySelector(".warning")) {
+                document.querySelector(".warning").remove();
+            }
 
             const form = document.getElementsByClassName('certificateFormGroup')[0];
             form.remove();
@@ -972,6 +1032,7 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
 
     // Keahlian
     let skill = document.createElement("input");
+    skill.className = "form-control";
     Object.assign(skill, {
         id: "skillNameInput",
         placeholder: "Cari keahlian Anda"
@@ -981,6 +1042,7 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
 
     // Deskripsi Keahlian
     let skillDescription = document.createElement("textarea");
+    skillDescription.className = "form-control";
     let count = document.createElement("p");
     Object.assign(skillDescription, {
         id: "skill",
@@ -1016,7 +1078,6 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
     newFormGroup.appendChild(skillDescriptionTag);
     newFormGroup.appendChild(br.cloneNode());
     newFormGroup.appendChild(skillDescription);
-    newFormGroup.appendChild(br.cloneNode());
     newFormGroup.appendChild(count);
 
     newFormGroup.appendChild(hr.cloneNode())
@@ -1050,6 +1111,10 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
         document.getElementById("skillsWrapper").style.display = "block";
         document.getElementById("tabNavigation").style.display = "block";
 
+        if (document.querySelector(".warning")) {
+            document.querySelector(".warning").remove();
+        }
+
         const form = document.getElementsByClassName('skillsFormGroup')[0];
         form.remove();
     });
@@ -1063,7 +1128,15 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
             const skillDescription = document.getElementById('skill').value.trim();
 
             // If input empty return nothing    
-            if (!skill && !skillDescription) return;
+            if (!skill || !skillDescription) {
+                if (!document.querySelector(".warning")) {
+                    const warning = document.createElement("p");
+                    warning.className = "warning"
+                    warning.innerHTML = 'Semua <span class="required">*</span> wajib diisi';
+                    document.getElementById("skillsForm").insertAdjacentElement("afterbegin", warning);
+                }
+                return;
+            };
 
             const fragment = document.createDocumentFragment();
 
@@ -1098,6 +1171,10 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
             document.getElementById("skillsWrapper").style.display = "block";
             document.getElementById("tabNavigation").style.display = "block";
 
+            if (document.querySelector(".warning")) {
+                document.querySelector(".warning").remove();
+            }
+
             const form = document.getElementsByClassName("skillsFormGroup")[0];
             form.remove();
         }
@@ -1129,6 +1206,7 @@ document.getElementById("addOthers").addEventListener("click", (e) => {
 
     // Nomor Manager
     let managerNumber = document.createElement("input");
+    managerNumber.className = "form-control";
     Object.assign(managerNumber, {
         id: "managerNumberInput",
         placeholder: "Masukkan no. telepon manager sebelumnya",
@@ -1139,6 +1217,7 @@ document.getElementById("addOthers").addEventListener("click", (e) => {
 
     // Perusahaan
     let company = document.createElement("input");
+    company.className = "form-control";
     Object.assign(company, {
         id: "companyInput",
         placeholder: "Masukkan nama perusahaan sebelumnya"
@@ -1148,6 +1227,7 @@ document.getElementById("addOthers").addEventListener("click", (e) => {
 
     // Manager
     let managerName = document.createElement("input");
+    managerName.className = "form-control";
     Object.assign(managerName, {
         id: "managerInput",
         placeholder: "Masukkan nama manager sebelumnya"
