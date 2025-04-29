@@ -19,6 +19,26 @@ function showTab(n) {
         document.getElementById("nextBtn").innerHTML = "Selanjutnya";
     }
 
+    // Required on tab 2 and 3
+    if (n == 2) {
+        if (document.getElementById("certificationBox").children.length < 1) {
+            document.getElementById("nextBtn").disabled = true;
+            document.getElementById("nextBtn").style.background = "var(--medium-dark-gray)";
+        } else {
+            document.getElementById("nextBtn").style.background = "var(--primary)";
+        }
+    } else if (n == 3) {
+        if (document.getElementById("skillBox").children.length < 1) {
+            document.getElementById("nextBtn").disabled = true;
+            document.getElementById("nextBtn").style.background = "var(--medium-dark-gray)";
+        } else {
+            document.getElementById("nextBtn").style.background = "var(--primary)";
+        }
+    } else {
+        document.getElementById("nextBtn").disabled = false;
+        document.getElementById("nextBtn").style.background = "var(--primary)";
+    }
+
     // ... and run a function that displays the correct step indicator:
     fixStepIndicator(n)
 }
@@ -27,6 +47,9 @@ function nextPrev(n) {
     // This function will figure out which tab to display
     var x = document.getElementsByClassName("tab");
     // Exit the function if any field in the current tab is invalid:
+    if (n === -1) {
+        document.getElementById("nextBtn").disabled = false;
+    }
     if (n == 1 && !validateForm()) return false;
     // Hide the current tab:
     x[currentTab].style.display = "none";
@@ -35,7 +58,7 @@ function nextPrev(n) {
     // if you have reached the end of the form... :
     if (currentTab >= x.length) {
         //...the form gets submitted:
-        document.getElementById("regForm").submit();
+        document.getElementById("dynamicForm").submit();
         return false;
     }
     // Otherwise, display the correct tab:
@@ -52,21 +75,6 @@ function validateForm() {
     const warning = document.createElement("p");
     warning.className = "warning"
     warning.innerHTML = 'Semua <span class="required">*</span> wajib diisi';
-
-    if (currentTab == 2) {
-        if (document.getElementById("educationBox").children.length < 1) {
-            valid = false;
-        }
-        if (document.getElementById("certificationBox").children.length < 1) {
-            valid = false;
-        }
-    } else if (currentTab == 3) {
-        if (document.getElementById("skillBox").children.length < 1) {
-            valid = false;
-        }
-    } else {
-        valid = true;
-    }
 
     // Validate input fields
     for (i = 0; i < inputs.length; i++) {
@@ -164,7 +172,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
         id: "positionInput",
         placeholder: "Masukkan posisi Anda sebelumnya"
     })
-    positionTag.innerHTML = 'Posisi<span class="required">*</span>';
+    positionTag.innerText = 'Posisi';
 
     // Perusahaan
     let company = document.createElement("input");
@@ -173,10 +181,10 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
         id: "companyInput",
         placeholder: "Masukkan perusahaan Anda sebelumnya"
     })
-    companyTag.innerHTML = 'Perusahaan<span class="required">*</span>';
+    companyTag.innerText = 'Perusahaan';
 
     // Tanggal Mulai
-    startTag.innerHTML = 'Tahun Mulai<span class="required">*</span>';
+    startTag.innerText = 'Tahun Mulai';
     const rowStart = document.createElement("div");
     rowStart.className = "row";
 
@@ -252,7 +260,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
     rowStart.appendChild(colStartYear);
 
     // Tanggal Akhir
-    endTag.innerHTML = 'Tanggal Akhir<span class="required">*</span>';
+    endTag.innerText = 'Tanggal Akhir';
     const rowEnd = document.createElement('div');
     rowEnd.className = 'row';
 
@@ -329,7 +337,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
     experience.className = "form-control";
     let count = document.createElement("p");
     count.setAttribute("id", "countExperience")
-    experienceTag.innerHTML = 'Deskripsi Pekerjaan<span class="required">*</span>';
+    experienceTag.innerText = 'Deskripsi Pekerjaan';
     Object.assign(experience, {
         id: 'experience',
         placeholder: 'Jelaskan informasi singkat serta pencapaian tentang pekerjaanmu sebelumnya'
@@ -430,7 +438,7 @@ document.getElementById("addExperience").addEventListener("click", (e) => {
                 if (!document.querySelector(".warning")) {
                     const warning = document.createElement("p");
                     warning.className = "warning"
-                    warning.innerHTML = 'Semua <span class="required">*</span> wajib diisi';
+                    warning.innerText = 'Semua isian wajib diisi';
                     document.getElementById("experienceForm").insertAdjacentElement("afterbegin", warning);
                 }
                 return;
@@ -1005,6 +1013,8 @@ document.getElementById("addCertificate").addEventListener("click", (e) => {
                 document.querySelector(".warning").remove();
             }
 
+            document.getElementById("nextBtn").disabled = false;
+            document.getElementById("nextBtn").style.background = "var(--primary)";
             const form = document.getElementsByClassName('certificateFormGroup')[0];
             form.remove();
         }
@@ -1175,6 +1185,8 @@ document.getElementById("addSkills").addEventListener("click", (e) => {
                 document.querySelector(".warning").remove();
             }
 
+            document.getElementById("nextBtn").disabled = false;
+            document.getElementById("nextBtn").style.background = "var(--primary)";
             const form = document.getElementsByClassName("skillsFormGroup")[0];
             form.remove();
         }
@@ -1297,6 +1309,10 @@ document.getElementById("addOthers").addEventListener("click", (e) => {
     document.getElementById("back").addEventListener("click", (e) => {
         e.preventDefault();
 
+        if (document.querySelector(".warning")) {
+            document.querySelector(".warning").remove();
+        }
+
         document.getElementById("otherWrapper").style.display = "block";
         document.getElementById("otherInfo").style.display = "block";
         document.getElementById("tabNavigation").style.display = "block";
@@ -1315,9 +1331,15 @@ document.getElementById("addOthers").addEventListener("click", (e) => {
             const manager = document.getElementById('managerInput').value.trim();
 
 
-            // If input empty return nothing    
-            if (!managerNumber && !company && !manager) return;
-
+            if (!managerNumber || !company || !manager) {
+                if (!document.querySelector(".warning")) {
+                    const warning = document.createElement("p");
+                    warning.className = "warning"
+                    warning.innerText = 'Semua isian wajib diisi';
+                    document.getElementById("otherForm").insertAdjacentElement("afterbegin", warning);
+                }
+                return;
+            };
             // Create fragment
             const fragment = document.createDocumentFragment();
 

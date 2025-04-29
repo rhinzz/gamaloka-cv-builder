@@ -34,7 +34,7 @@ p {
 
 hr {
     border-top: var(--bs-border-width) solid var(--medium-dark-gray);
-    margin: 1.5rem 0;
+    margin: 1rem 0;
 }
 
 h5,
@@ -359,7 +359,7 @@ input[type="file"] {
 .inputBox {
     border: 1px solid #EBEBEB;
     border-radius: 8px;
-    background-color: #FFF;
+    background-color: var(--white);
     box-shadow: 0px 2px 24px 0px rgba(34, 34, 34, 0.08);
     margin-bottom: 1rem;
     padding: 1rem;
